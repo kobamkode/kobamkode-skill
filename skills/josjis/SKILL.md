@@ -1,0 +1,49 @@
+---
+name: josjis
+description: Run the full delivery chain from one command — grill the idea with docs, publish a spec, break it into tickets, implement them on an integration branch, then write the PR. Use when the user invokes /josjis or asks for the end-to-end grill-to-PR workflow.
+disable-model-invocation: true
+---
+
+# Josjis
+
+Run these phases in order. Do not skip a phase, batch phases, or start a later phase before the current one finishes.
+
+Any text after the command is the idea or topic for phase 1.
+
+## Before phase 2
+
+The spec, ticket, and implementation phases expect the project issue tracker and triage vocabulary to be configured. If they are not, tell the user to run `/setup-matt-pocock-skills` and stop.
+
+## Phase 1 — Grill with docs
+
+Load and follow the `grill-with-docs` skill (`~/.agents/skills/grill-with-docs/SKILL.md`).
+
+This phase owns the design interview plus the `GLOSSARY.md` and ADR updates. Its completion condition is the user explicitly confirming a shared understanding. Stop and wait for that confirmation; publish nothing yet.
+
+## Phase 2 — Publish the spec
+
+Load and follow the `to-spec` skill (`~/.agents/skills/to-spec/SKILL.md`), using the conversation and docs from phase 1.
+
+Satisfy its seam check with the user first, then publish the spec to the configured tracker with the `ready-for-agent` label. Keep the published spec's issue number, URL, or path as the **spec pointer** for later phases.
+
+## Phase 3 — Publish the tickets
+
+Load and follow the `to-tickets` skill (`~/.agents/skills/to-tickets/SKILL.md`), passing the **spec pointer**.
+
+Satisfy its ticket-breakdown quiz before publishing. Publish one ticket per slice with its blocking edges. Keep the published tickets as the **ticket pointers**.
+
+## Phase 4 — Implement the spec
+
+Load and follow the `implement-spec` skill (`~/.agents/skills/implement-spec/SKILL.md`), passing the **spec pointer** and the **ticket pointers**.
+
+Do not re-interview the user about the design; phases 1–3 settled it. If implementation reveals a genuine contradiction in the spec, surface it and stop rather than silently redefining the work.
+
+Completion condition: the integration branch implements the whole spec, every ticket is resolved the way the tracker closes work (or the draft PR is ready for review), and the code review `implement-spec` runs is clean.
+
+## Phase 5 — Write the PR
+
+Load and follow the `pr` skill (`~/.agents/skills/pr/SKILL.md`).
+
+Build the PR body from the integration branch, spec, tickets, and the evidence produced in phase 4. Apply it to the PR opened in phase 4. If no PR exists, open one when the tracker closes work through PRs; otherwise present the body.
+
+Stop after reporting the PR and the integration branch.

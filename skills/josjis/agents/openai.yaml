@@ -1,0 +1,5 @@
+interface:
+  display_name: "Josjis"
+  short_description: "Grill, spec, tickets, implement, PR"
+policy:
+  allow_implicit_invocation: false
