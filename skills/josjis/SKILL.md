@@ -14,6 +14,20 @@ Any text after the command is the idea or topic for phase 1.
 
 The spec, ticket, and implementation phases expect the project issue tracker and triage vocabulary to be configured. If they are not, tell the user to run `/setup-matt-pocock-skills` and stop.
 
+## When the tracker is Beads
+
+Beads projects add `bv` as a read-only triage engine. It is the dependency and priority oracle; the tracker's triage labels stay the authority on what may be worked. Every `bv` invocation used to select, order, or plan work passes the gate label:
+
+```bash
+bv --robot-next --label ready-for-agent
+bv --robot-plan --label ready-for-agent --recipe actionable
+```
+
+- Never run bare `bv` — it opens a blocking TUI. Use `--robot-*` only.
+- A bv pick is a suggestion inside the gate, never an override. A bead without `ready-for-agent` is not work, however high its score.
+- Label tickets `ready-for-agent` in phase 3 once they are agent-ready, or bv cannot see them and phase 4 has no queue.
+- Claim with the `claim_command` bv emits; transition and close through the tracker as usual.
+
 ## Phase 1 — Grill with docs
 
 Load and follow the `grill-with-docs` skill (`~/.agents/skills/grill-with-docs/SKILL.md`).
