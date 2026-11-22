@@ -34,6 +34,16 @@ Load and follow the `grill-with-docs` skill (`~/.agents/skills/grill-with-docs/S
 
 This phase owns the design interview plus the `GLOSSARY.md` and ADR updates. Its completion condition is the user explicitly confirming a shared understanding. Stop and wait for that confirmation; publish nothing yet.
 
+Once the user confirms, ask one question: **should we prototype the UI before writing the spec?**
+
+- **No** — phase 1 is complete. Move on.
+- **Yes** — load and follow the `prototype` skill (`~/.agents/skills/prototype/SKILL.md`), taking its UI branch, while the design is still fresh. Alongside the variants it builds:
+  - Give the user a **flow diagram** of the screens and transitions the design implies, in the conversation. Use Mermaid when the medium renders it, otherwise ASCII. The diagram must be reviewable without running the prototype.
+  - If the project has no runnable UI stack to host variants, the flow diagram plus sketched screens is the deliverable — say so instead of forcing an unbuildable prototype.
+  - Fold the prototype verdict (chosen variant, flow corrections) into the design, glossary, and ADRs before closing the phase.
+
+Phase 1 still closes only when the user explicitly confirms the shared understanding — which now includes the prototype verdict when one was built.
+
 ## Phase 2 — Publish the spec
 
 Load and follow the `to-spec` skill (`~/.agents/skills/to-spec/SKILL.md`), using the conversation and docs from phase 1.
