@@ -1,0 +1,5 @@
+interface:
+  display_name: "Setup Josjis"
+  short_description: "Configure a repo for the josjis skills"
+policy:
+  allow_implicit_invocation: false

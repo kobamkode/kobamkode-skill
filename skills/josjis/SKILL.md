@@ -12,7 +12,7 @@ Any text after the command is the idea or topic for phase 1.
 
 ## Before phase 2
 
-The spec, ticket, and implementation phases expect the project issue tracker and triage vocabulary to be configured. If they are not, tell the user to run `/setup-matt-pocock-skills` and stop.
+The spec, ticket, and implementation phases expect the project issue tracker and triage vocabulary to be configured. If they are not, tell the user to run `/setup-josjis` and stop.
 
 ## When the tracker is Beads
 
