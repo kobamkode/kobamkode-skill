@@ -97,7 +97,7 @@ Conventional Commits for every message: `type(scope): summary`. See `docs/agents
 Then write the docs files using the seed templates in this skill folder as a starting point:
 
 - [issue-tracker-beads.md](./issue-tracker-beads.md): beads issue tracker
-- [triage-labels.md](./triage-labels.md): label mapping
+- [triage-labels.md](./triage-labels.md): label vocabulary
 - [commits.md](./commits.md): Conventional Commits rules
 - [domain.md](./domain.md): domain doc consumer rules + layout
 
