@@ -68,6 +68,6 @@ Completion condition: the integration branch implements the whole spec, every ti
 
 Load and follow the `pr` skill (`~/.agents/skills/pr/SKILL.md`).
 
-Build the PR body from the integration branch, spec, tickets, and the evidence produced in phase 4. Apply it to the PR opened in phase 4. If no PR exists, open one when the tracker closes work through PRs; otherwise present the body.
+Build the PR body from the integration branch, spec, tickets, and the evidence produced in phase 4. Apply it to the PR opened in phase 4. If no PR exists and the repo has a remote (`git remote` lists one), push the integration branch and open one with `gh pr create`; with no remote, present the body instead.
 
 Stop after reporting the PR and the integration branch.
